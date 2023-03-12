@@ -144,6 +144,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/12/tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/12/tomcat/" class="post-title-link" itemprop="url">tomcat</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-12 03:37:54 / 修改时间：13:06:12" itemprop="dateCreated datePublished" datetime="2023-03-12T03:37:54-04:00">2023-03-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><ul>
+<li>前提准备</li>
+<li>Java环境安装<br>Tomcat 需java环境，运行 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update <span class="comment">#升级apt</span></span><br><span class="line">sudo apt install default-jdk <span class="comment">#sudo apt install default-jdk</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>新增tomcat用户及用户组<br>以root运行Tomcat，具有安全风险。我们将创建普通用户运行Tomcat<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd tomcat <span class="comment">#增加tomcat用户组</span></span><br><span class="line">sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat <span class="comment"># 创建一个新 tomcat用户。我们将使该用户成为该tomcat组的成员，它有/opt/tomcat的主目录（我们将安装Tomcat）和 /bin/false的shell（因此没有人可以登录该帐户）</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>在<a target="_blank" rel="noopener" href="https://tomcat.apache.org/">tomcat官网</a>找到合适版本点击，获取对应<code>tar.gz</code>链接<br>将其下载到<code>/tmp</code>(这是一个很好的下载短暂项目的目录,)目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://dlcdn.apache.org/tomcat/tomcat-10/v<span class="variable">$&#123;VERSION&#125;</span>/bin/apache-tomcat-<span class="variable">$&#123;VERSION&#125;</span>.tar.gz -P /tmp <span class="comment"># 下载对应tomcat到tmp目录下</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> /opt/tomcat <span class="comment"># 在opt下创建tomcat目录</span></span><br><span class="line">sudo tar xzvf /tmp/apache-tomcat-<span class="variable">$&#123;VERSION&#125;</span>.tar.gz -C /opt/tomcat --strip-components=1 <span class="comment"># 将下载的tar.gz解压到opt的tomcat目录下,--strip-components=1,代表删除压缩文件根目录，直接将其子孙文件按层级提取到/opt/tomcat下</span></span><br></pre></td></tr></table></figure>
+<h4 id="更新权限"><a href="#更新权限" class="headerlink" title="更新权限"></a>更新权限</h4><p>设置的tomcat用户需要能够访问Tomcat安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chgrp</span> -R tomcat /opt/tomcat <span class="comment"># 在整个安装目录中授予tomcat组权限</span></span><br><span class="line"><span class="built_in">cd</span> /opt/tomcat </span><br><span class="line">sudo <span class="built_in">chmod</span> -R g+r conf <span class="comment">#为tomcat组提供对当前目录下conf目录及其所有内容的读访问权限</span></span><br><span class="line">sudo <span class="built_in">chmod</span> g+x conf <span class="comment"># 执行对当前目录下conf目录本身的访问</span></span><br><span class="line">sudo <span class="built_in">chown</span> -R tomcat webapps/ work/ temp/ logs/ <span class="comment"># tomcat用户成为webapps，work，temp，和logs目录的所有者</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建一个systemd服务文件来管理Tomcat进程"><a href="#创建一个systemd服务文件来管理Tomcat进程" class="headerlink" title="创建一个systemd服务文件来管理Tomcat进程"></a>创建一个systemd服务文件来管理Tomcat进程</h4><p>我们希望能够将Tomcat作为服务运行，因此我们将设置systemd服务文件。 Tomcat需要知道Java的安装位置。此路径通常称为“JAVA_HOME”<br><code>sudo update-java-alternatives -l</code>,将会得出如<br><code>java-1.11.0-openjdk-amd64      1111       /usr/lib/jvm/java-1.11.0-openjdk-amd64</code><br>有了这条信息，我们就可以创建systemd服务文件了。在&#x2F;etc&#x2F;systemd&#x2F;system目录中键入以下内容以打开一个名为tomcat.service的文件：<br><code>sudo nano /etc/systemd/system/tomcat.service</code><br>将以下内容粘贴到您的服务文件中。替换对应<code>JAVA_HOME</code>, 如有必要可进行其他属性替换</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Apache Tomcat Web Application Container</span><br><span class="line">After=network.target</span><br><span class="line">​</span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">​</span><br><span class="line">Environment=JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64</span><br><span class="line">Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid</span><br><span class="line">Environment=CATALINA_HOME=/opt/tomcat</span><br><span class="line">Environment=CATALINA_BASE=/opt/tomcat</span><br><span class="line">Environment=&#x27;CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC&#x27;</span><br><span class="line">Environment=&#x27;JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom&#x27;</span><br><span class="line">​</span><br><span class="line">ExecStart=/opt/tomcat/bin/startup.sh</span><br><span class="line">ExecStop=/opt/tomcat/bin/shutdown.sh</span><br><span class="line">​</span><br><span class="line">User=tomcat</span><br><span class="line">Group=tomcat</span><br><span class="line">UMask=0007</span><br><span class="line">RestartSec=10</span><br><span class="line">Restart=always</span><br><span class="line">​</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>完成后，保存并关闭文件(按下Ctrl+X),然后根据提示输入<code>Y</code>确认，最后按下<code>Enter</code>键退出编辑器.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload <span class="comment">#重新加载systemd守护程序，以便它知道我们的服务文件</span></span><br><span class="line">sudo systemctl start tomcat <span class="comment">#启动Tomcat服务</span></span><br><span class="line">sudo systemctl status tomcat <span class="comment">#仔细检查它是否正常启动：... Active: active (running) since...</span></span><br><span class="line">sudo ufw allow 8080 <span class="comment">#允许防火墙打开8080端口</span></span><br><span class="line">打开 http://server_domain_or_IP:8080 看是否能看到tomcat主页，如果可以则</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> tomcat <span class="comment"># 配置tomcat自启动</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/04/MyBatis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -175,7 +255,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-06 09:06:23" itemprop="dateModified" datetime="2023-03-06T09:06:23-05:00">2023-03-06</time>
+                <time title="修改时间：2023-03-07 04:16:26" itemprop="dateModified" datetime="2023-03-07T04:16:26-05:00">2023-03-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,7 +312,16 @@
 <li>默认情况下Mybatis开始事务,故增删改时<br>1.要么在创建session时<code>factory.openSession(true)</code>设置默认自动提交<br>or<br>2.在每次操作后session.commit</li>
 <li>可在插入后返回指定列数据<br><code>&lt;insert id=&quot;add&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;自动生成主键名&quot;&gt;</code></li>
 </ul>
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>可以通过<set>标签避免，sql语法后的<code>,</code>问题eg:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;update&quot;</span>&gt;</span></span><br><span class="line">    UPDATE tb_use</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;userName!=null and userName!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            username = #&#123;userName&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password!=null and password!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            password = #&#123;password&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age&gt;0&quot;</span>&gt;</span></span><br><span class="line">            age = #&#123;age&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    WHERE id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">deleteSome</span><span class="params">(<span class="meta">@Param(<span class="string">&quot;ids&quot;</span>)</span> ids:<span class="type">List</span>&lt;<span class="type">Int</span>&gt;)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteSome&quot;</span>&gt;</span></span><br><span class="line">    DELETE FROM tb_use WHERE id in</span><br><span class="line">    <span class="comment">&lt;!-- ids需要在接口中通过@Param(&quot;ids&quot;)手动指定，</span></span><br><span class="line"><span class="comment">    否者collection参数类型，mybatis有自己定义key的规则，如list的key就是list,数组的key是array，而不是参数名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">        #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注解生成sql"><a href="#注解生成sql" class="headerlink" title="注解生成sql"></a>注解生成sql</h3><p>eg:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Delete(<span class="string">&quot;delete from tb_use where id=#&#123;id&#125;&quot;</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">delete</span><span class="params">(id: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span></span><br><span class="line"><span class="comment">//这样就不用在对应的mapper文件中增加标签</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h3>
       
     </div>
 
@@ -776,7 +865,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

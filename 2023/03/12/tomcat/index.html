@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="安装Debian 前提准备 Java环境安装Tomcat 需java环境，运行 123sudo apt update #升级aptsudo apt install default-jdk #sudo apt install default-jdk 新增tomcat用户及用户组以root运行Tomcat，具有安全风险。我们将创建普通用户运行Tomcat12sudo groupadd tomcat #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tomcat">
+<meta property="og:url" content="http://example.com/2023/03/12/tomcat/index.html">
+<meta property="og:site_name" content="PeytonWu&#39;s Blog">
+<meta property="og:description" content="安装Debian 前提准备 Java环境安装Tomcat 需java环境，运行 123sudo apt update #升级aptsudo apt install default-jdk #sudo apt install default-jdk 新增tomcat用户及用户组以root运行Tomcat，具有安全风险。我们将创建普通用户运行Tomcat12sudo groupadd tomcat #">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-12T07:37:54.123Z">
+<meta property="article:modified_time" content="2023-03-12T17:06:12.117Z">
+<meta property="article:tag" content="JavaEE">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/03/12/tomcat/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>tomcat | PeytonWu's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">PeytonWu's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/12/tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tomcat
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-12 03:37:54 / 修改时间：13:06:12" itemprop="dateCreated datePublished" datetime="2023-03-12T03:37:54-04:00">2023-03-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><ul>
+<li>前提准备</li>
+<li>Java环境安装<br>Tomcat 需java环境，运行 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update <span class="comment">#升级apt</span></span><br><span class="line">sudo apt install default-jdk <span class="comment">#sudo apt install default-jdk</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>新增tomcat用户及用户组<br>以root运行Tomcat，具有安全风险。我们将创建普通用户运行Tomcat<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd tomcat <span class="comment">#增加tomcat用户组</span></span><br><span class="line">sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat <span class="comment"># 创建一个新 tomcat用户。我们将使该用户成为该tomcat组的成员，它有/opt/tomcat的主目录（我们将安装Tomcat）和 /bin/false的shell（因此没有人可以登录该帐户）</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>在<a target="_blank" rel="noopener" href="https://tomcat.apache.org/">tomcat官网</a>找到合适版本点击，获取对应<code>tar.gz</code>链接<br>将其下载到<code>/tmp</code>(这是一个很好的下载短暂项目的目录,)目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://dlcdn.apache.org/tomcat/tomcat-10/v<span class="variable">$&#123;VERSION&#125;</span>/bin/apache-tomcat-<span class="variable">$&#123;VERSION&#125;</span>.tar.gz -P /tmp <span class="comment"># 下载对应tomcat到tmp目录下</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> /opt/tomcat <span class="comment"># 在opt下创建tomcat目录</span></span><br><span class="line">sudo tar xzvf /tmp/apache-tomcat-<span class="variable">$&#123;VERSION&#125;</span>.tar.gz -C /opt/tomcat --strip-components=1 <span class="comment"># 将下载的tar.gz解压到opt的tomcat目录下,--strip-components=1,代表删除压缩文件根目录，直接将其子孙文件按层级提取到/opt/tomcat下</span></span><br></pre></td></tr></table></figure>
+<h4 id="更新权限"><a href="#更新权限" class="headerlink" title="更新权限"></a>更新权限</h4><p>设置的tomcat用户需要能够访问Tomcat安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chgrp</span> -R tomcat /opt/tomcat <span class="comment"># 在整个安装目录中授予tomcat组权限</span></span><br><span class="line"><span class="built_in">cd</span> /opt/tomcat </span><br><span class="line">sudo <span class="built_in">chmod</span> -R g+r conf <span class="comment">#为tomcat组提供对当前目录下conf目录及其所有内容的读访问权限</span></span><br><span class="line">sudo <span class="built_in">chmod</span> g+x conf <span class="comment"># 执行对当前目录下conf目录本身的访问</span></span><br><span class="line">sudo <span class="built_in">chown</span> -R tomcat webapps/ work/ temp/ logs/ <span class="comment"># tomcat用户成为webapps，work，temp，和logs目录的所有者</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建一个systemd服务文件来管理Tomcat进程"><a href="#创建一个systemd服务文件来管理Tomcat进程" class="headerlink" title="创建一个systemd服务文件来管理Tomcat进程"></a>创建一个systemd服务文件来管理Tomcat进程</h4><p>我们希望能够将Tomcat作为服务运行，因此我们将设置systemd服务文件。 Tomcat需要知道Java的安装位置。此路径通常称为“JAVA_HOME”<br><code>sudo update-java-alternatives -l</code>,将会得出如<br><code>java-1.11.0-openjdk-amd64      1111       /usr/lib/jvm/java-1.11.0-openjdk-amd64</code><br>有了这条信息，我们就可以创建systemd服务文件了。在&#x2F;etc&#x2F;systemd&#x2F;system目录中键入以下内容以打开一个名为tomcat.service的文件：<br><code>sudo nano /etc/systemd/system/tomcat.service</code><br>将以下内容粘贴到您的服务文件中。替换对应<code>JAVA_HOME</code>, 如有必要可进行其他属性替换</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Apache Tomcat Web Application Container</span><br><span class="line">After=network.target</span><br><span class="line">​</span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">​</span><br><span class="line">Environment=JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64</span><br><span class="line">Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid</span><br><span class="line">Environment=CATALINA_HOME=/opt/tomcat</span><br><span class="line">Environment=CATALINA_BASE=/opt/tomcat</span><br><span class="line">Environment=&#x27;CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC&#x27;</span><br><span class="line">Environment=&#x27;JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom&#x27;</span><br><span class="line">​</span><br><span class="line">ExecStart=/opt/tomcat/bin/startup.sh</span><br><span class="line">ExecStop=/opt/tomcat/bin/shutdown.sh</span><br><span class="line">​</span><br><span class="line">User=tomcat</span><br><span class="line">Group=tomcat</span><br><span class="line">UMask=0007</span><br><span class="line">RestartSec=10</span><br><span class="line">Restart=always</span><br><span class="line">​</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>完成后，保存并关闭文件(按下Ctrl+X),然后根据提示输入<code>Y</code>确认，最后按下<code>Enter</code>键退出编辑器.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload <span class="comment">#重新加载systemd守护程序，以便它知道我们的服务文件</span></span><br><span class="line">sudo systemctl start tomcat <span class="comment">#启动Tomcat服务</span></span><br><span class="line">sudo systemctl status tomcat <span class="comment">#仔细检查它是否正常启动：... Active: active (running) since...</span></span><br><span class="line">sudo ufw allow 8080 <span class="comment">#允许防火墙打开8080端口</span></span><br><span class="line">打开 http://server_domain_or_IP:8080 看是否能看到tomcat主页，如果可以则</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> tomcat <span class="comment"># 配置tomcat自启动</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaEE/" rel="tag"># JavaEE</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/04/MyBatis/" rel="prev" title="MyBatis">
+      <i class="fa fa-chevron-left"></i> MyBatis
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Debian"><span class="nav-number">1.1.</span> <span class="nav-text">Debian</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%9D%83%E9%99%90"><span class="nav-number">1.1.2.</span> <span class="nav-text">更新权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAsystemd%E6%9C%8D%E5%8A%A1%E6%96%87%E4%BB%B6%E6%9D%A5%E7%AE%A1%E7%90%86Tomcat%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.1.3.</span> <span class="nav-text">创建一个systemd服务文件来管理Tomcat进程</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-coins"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
