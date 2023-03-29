@@ -20,24 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="常用命令12345678910# 打包：mvn package# 编译：mvn compile# 清空：清除编译后目录，默认是target目录）mvn clean# 运行测试：mvn test# 安装jar包到本地仓库中：mvn install IDEA集成POM 文件中 alt+insert快捷键,选择dependence选项，方便关键字快捷搜索所需库  Scope 默认是compile类型,不">
+  <meta name="description" content="获取请求参数get 或 post请求&amp;&amp;Content-Type 为application&#x2F;x-www-form-urlencoded :可以通过HttpServletRequest.getParameter或HttpServletRequest.parameterMap来获取URL中字段参数 post请求body参数只能通过HttpServletRequest.read">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven">
-<meta property="og:url" content="http://example.com/2023/03/02/Maven/index.html">
+<meta property="og:title" content="Request&amp;Response">
+<meta property="og:url" content="http://example.com/2023/03/27/Request-Response/index.html">
 <meta property="og:site_name" content="PeytonWu&#39;s Blog">
-<meta property="og:description" content="常用命令12345678910# 打包：mvn package# 编译：mvn compile# 清空：清除编译后目录，默认是target目录）mvn clean# 运行测试：mvn test# 安装jar包到本地仓库中：mvn install IDEA集成POM 文件中 alt+insert快捷键,选择dependence选项，方便关键字快捷搜索所需库  Scope 默认是compile类型,不">
+<meta property="og:description" content="获取请求参数get 或 post请求&amp;&amp;Content-Type 为application&#x2F;x-www-form-urlencoded :可以通过HttpServletRequest.getParameter或HttpServletRequest.parameterMap来获取URL中字段参数 post请求body参数只能通过HttpServletRequest.read">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://thumbnail1.baidupcs.com/thumbnail/54671f230oda207b5e5c94d3533ba181?fid=1714346691-250528-907150314369162&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LxMOU58BTEYS0/cC6Hl3REz2x6c=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1">
-<meta property="og:image" content="https://thumbnail1.baidupcs.com/thumbnail/0ea85c91bie28da64c4cece4f100fa92?fid=1714346691-250528-256739189166398&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-okBFd6pkASikMWjt04TiKmUnTaU=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1">
-<meta property="og:image" content="https://thumbnail1.baidupcs.com/thumbnail/fc1b908e6rae72f5003ec22b2466618f?fid=1714346691-250528-1080596238903502&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-OdY/b6qx32B/kAuH8p0JkmxX38E=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1">
-<meta property="og:image" content="https://thumbnail1.baidupcs.com/thumbnail/89d74ad10s2918e338422a2b09ab1705?fid=1714346691-250528-445983644863441&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-J7n/CYcsOEDjcmZRhs958JKqghk=&expires=8h&chkbd=0&chkv=0&dp-logid=274629717510393283&dp-callid=0&time=1677819600&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1">
-<meta property="article:published_time" content="2023-03-03T02:57:21.972Z">
-<meta property="article:modified_time" content="2023-03-03T11:39:33.345Z">
+<meta property="article:published_time" content="2023-03-27T08:09:50.663Z">
+<meta property="article:modified_time" content="2023-03-29T04:03:17.682Z">
 <meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://thumbnail1.baidupcs.com/thumbnail/54671f230oda207b5e5c94d3533ba181?fid=1714346691-250528-907150314369162&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LxMOU58BTEYS0/cC6Hl3REz2x6c=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1">
 
-<link rel="canonical" href="http://example.com/2023/03/02/Maven/">
+<link rel="canonical" href="http://example.com/2023/03/27/Request-Response/">
 
 
 <script id="page-configurations">
@@ -50,7 +45,7 @@
   };
 </script>
 
-  <title>Maven | PeytonWu's Blog</title>
+  <title>Request&Response | PeytonWu's Blog</title>
   
 
 
@@ -155,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/02/Maven/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/27/Request-Response/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -168,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Maven
+          Request&Response
         </h1>
 
         <div class="post-meta">
@@ -178,14 +173,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-03-02 21:57:21" itemprop="dateCreated datePublished" datetime="2023-03-02T21:57:21-05:00">2023-03-02</time>
+              <time title="创建时间：2023-03-27 04:09:50" itemprop="dateCreated datePublished" datetime="2023-03-27T04:09:50-04:00">2023-03-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-03 06:39:33" itemprop="dateModified" datetime="2023-03-03T06:39:33-05:00">2023-03-03</time>
+                <time title="修改时间：2023-03-29 00:03:17" itemprop="dateModified" datetime="2023-03-29T00:03:17-04:00">2023-03-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,13 +203,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打包：</span></span><br><span class="line">mvn package</span><br><span class="line"><span class="comment"># 编译：</span></span><br><span class="line">mvn compile</span><br><span class="line"><span class="comment"># 清空：清除编译后目录，默认是target目录）</span></span><br><span class="line">mvn clean</span><br><span class="line"><span class="comment"># 运行测试：</span></span><br><span class="line">mvn <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 安装jar包到本地仓库中：</span></span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
-<h2 id="IDEA集成"><a href="#IDEA集成" class="headerlink" title="IDEA集成"></a>IDEA集成</h2><p><img src="https://thumbnail1.baidupcs.com/thumbnail/54671f230oda207b5e5c94d3533ba181?fid=1714346691-250528-907150314369162&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LxMOU58BTEYS0/cC6Hl3REz2x6c=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="IDEA更改Maven默认Home及setting"><br><img src="https://thumbnail1.baidupcs.com/thumbnail/0ea85c91bie28da64c4cece4f100fa92?fid=1714346691-250528-256739189166398&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-okBFd6pkASikMWjt04TiKmUnTaU=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="创建Maven项目"><br><img src="https://thumbnail1.baidupcs.com/thumbnail/fc1b908e6rae72f5003ec22b2466618f?fid=1714346691-250528-1080596238903502&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-OdY/b6qx32B/kAuH8p0JkmxX38E=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="导入依赖"><br><img src="https://thumbnail1.baidupcs.com/thumbnail/89d74ad10s2918e338422a2b09ab1705?fid=1714346691-250528-445983644863441&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-J7n/CYcsOEDjcmZRhs958JKqghk=&expires=8h&chkbd=0&chkv=0&dp-logid=274629717510393283&dp-callid=0&time=1677819600&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="依赖范围"><br>POM 文件中 alt+insert快捷键,选择dependence选项，方便关键字快捷搜索所需库 </p>
-<h3 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h3><ul>
-<li>默认是compile类型,不写或特殊指定即是默认</li>
-<li>运行环境类型的依赖,基本都是provided ,仅用于编译通过及查看源码，不用打进包里，实际的类在环境中已经有。</li>
-</ul>
+        <h4 id="获取请求参数"><a href="#获取请求参数" class="headerlink" title="获取请求参数"></a>获取请求参数</h4><p>get 或 post请求&amp;&amp;Content-Type 为application&#x2F;x-www-form-urlencoded :<br>可以通过<code>HttpServletRequest.getParameter</code>或<code>HttpServletRequest.parameterMap</code>来获取URL中字段参数</p>
+<p>post请求body参数只能通过<code>HttpServletRequest.reader</code>或<code>HttpServletRequest.inputStream</code>获取</p>
+<h4 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h4><p>1.<code>HttpServletRequest.getParameter</code>或<code>HttpServletRequest.parameterMap</code>获取URL中字段参数中文乱码问题<br>原因是浏览器默认用UTF-8进行URL encode，而tomcat<br>默认用ISO-8859-1解码后放入parameterMap。解决方案:<code>String(req.getParameter(&quot;xxx&quot;).getBytes(&quot;ISO-8859-1&quot;),&quot;UTF-8&quot;)</code><br>Tomcat 8后默认以UTF-8解码，故无此问题</p>
+<h4 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h4><p>请求转发(forward)<br>一种在服务器内部的资源跳转方式，1次请求 <code>req.getRequestDispatcher(&quot;/本服务内要挑战的路径&quot;).forward(req, resp)</code></p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>请求2次<br>方式1:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resp.setStatus(<span class="number">302</span>)</span><br><span class="line">resp.setHeader(<span class="string">&quot;location&quot;</span>, <span class="string">&quot;重定向地址&quot;</span>)</span><br></pre></td></tr></table></figure>
 
+<p>方式2:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.sendRedirect(<span class="string">&quot;重定向地址&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="response"><a href="#response" class="headerlink" title="response"></a>response</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">resp.contentType = <span class="string">&quot;text/html;charset=utf-8&quot;</span> <span class="comment">//告诉客户端响应字符集，如果用字节流返回文字，也要设置</span></span><br><span class="line">resp.writer.write(<span class="string">&quot;测试响应&quot;</span>) <span class="comment">//使用字符流</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字节流返回文件 ，也可以用common-io:common-io:2.6 这个库的IOUtils.copy(fileInput,resp.outputStream)替代</span></span><br><span class="line"><span class="keyword">val</span> fileInput = FileInputStream(<span class="string">&quot;本机文件路径&quot;</span>)</span><br><span class="line">        <span class="keyword">val</span> bytes = ByteArray(<span class="number">1024</span>)</span><br><span class="line">        <span class="keyword">var</span> len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            len = fileInput.read(bytes)</span><br><span class="line">            <span class="keyword">if</span> (len != -<span class="number">1</span>) &#123;</span><br><span class="line">                resp.outputStream.write(bytes, <span class="number">0</span>, len)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (len != -<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -232,13 +231,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/28/JDBC/" rel="prev" title="JDBC">
-      <i class="fa fa-chevron-left"></i> JDBC
+    <a href="/2023/03/12/tomcat/" rel="prev" title="tomcat">
+      <i class="fa fa-chevron-left"></i> tomcat
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/03/04/MyBatis/" rel="next" title="MyBatis">
-      MyBatis <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -297,7 +293,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA%E9%9B%86%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">IDEA集成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scope"><span class="nav-number">2.1.</span> <span class="nav-text">Scope</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">获取请求参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">中文乱码问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91"><span class="nav-number">3.</span> <span class="nav-text">请求转发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">4.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#response"><span class="nav-number">5.</span> <span class="nav-text">response</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

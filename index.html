@@ -144,6 +144,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/27/Request-Response/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/27/Request-Response/" class="post-title-link" itemprop="url">Request&Response</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-27 04:09:50" itemprop="dateCreated datePublished" datetime="2023-03-27T04:09:50-04:00">2023-03-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-29 00:03:17" itemprop="dateModified" datetime="2023-03-29T00:03:17-04:00">2023-03-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="获取请求参数"><a href="#获取请求参数" class="headerlink" title="获取请求参数"></a>获取请求参数</h4><p>get 或 post请求&amp;&amp;Content-Type 为application&#x2F;x-www-form-urlencoded :<br>可以通过<code>HttpServletRequest.getParameter</code>或<code>HttpServletRequest.parameterMap</code>来获取URL中字段参数</p>
+<p>post请求body参数只能通过<code>HttpServletRequest.reader</code>或<code>HttpServletRequest.inputStream</code>获取</p>
+<h4 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h4><p>1.<code>HttpServletRequest.getParameter</code>或<code>HttpServletRequest.parameterMap</code>获取URL中字段参数中文乱码问题<br>原因是浏览器默认用UTF-8进行URL encode，而tomcat<br>默认用ISO-8859-1解码后放入parameterMap。解决方案:<code>String(req.getParameter(&quot;xxx&quot;).getBytes(&quot;ISO-8859-1&quot;),&quot;UTF-8&quot;)</code><br>Tomcat 8后默认以UTF-8解码，故无此问题</p>
+<h4 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h4><p>请求转发(forward)<br>一种在服务器内部的资源跳转方式，1次请求 <code>req.getRequestDispatcher(&quot;/本服务内要挑战的路径&quot;).forward(req, resp)</code></p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>请求2次<br>方式1:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resp.setStatus(<span class="number">302</span>)</span><br><span class="line">resp.setHeader(<span class="string">&quot;location&quot;</span>, <span class="string">&quot;重定向地址&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>方式2:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.sendRedirect(<span class="string">&quot;重定向地址&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="response"><a href="#response" class="headerlink" title="response"></a>response</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">resp.contentType = <span class="string">&quot;text/html;charset=utf-8&quot;</span> <span class="comment">//告诉客户端响应字符集，如果用字节流返回文字，也要设置</span></span><br><span class="line">resp.writer.write(<span class="string">&quot;测试响应&quot;</span>) <span class="comment">//使用字符流</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//字节流返回文件 ，也可以用common-io:common-io:2.6 这个库的IOUtils.copy(fileInput,resp.outputStream)替代</span></span><br><span class="line"><span class="keyword">val</span> fileInput = FileInputStream(<span class="string">&quot;本机文件路径&quot;</span>)</span><br><span class="line">        <span class="keyword">val</span> bytes = ByteArray(<span class="number">1024</span>)</span><br><span class="line">        <span class="keyword">var</span> len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            len = fileInput.read(bytes)</span><br><span class="line">            <span class="keyword">if</span> (len != -<span class="number">1</span>) &#123;</span><br><span class="line">                resp.outputStream.write(bytes, <span class="number">0</span>, len)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">while</span> (len != -<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/12/tomcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -880,7 +963,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
