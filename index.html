@@ -144,6 +144,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/31/session/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/31/session/" class="post-title-link" itemprop="url">session</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-31 03:36:26 / 修改时间：06:50:19" itemprop="dateCreated datePublished" datetime="2023-03-31T03:36:26-04:00">2023-03-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul>
+<li>我们设置的Cookie浏览器会分path，只有同一path返回的cookie，下一次访问同path时(请求转发也算)，浏览器请求头才会带上对应path.<br>可以手动设置<code>Cookie.path = xxx eg:req.contextPath</code>来指定path,浏览器默认根据要访问的url依次匹配最接近的1级,2级path的cookie并带上</li>
+<li>Cookie的值只能是String无法想session一样是object，且无法为中文,需要放中文时需要<code>URLEncode</code></li>
+<li>Cookie的有效期<code>Cookie.maxAge = 1000 // 秒为单位</code></li>
+<li>JSP中可以通过<code>$&#123;cookie.key.value&#125; key为cookie对应的key</code>获取Cookie</li>
+</ul>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>Session作用域，浏览器重启或者新session后则刷新，原理是利用Cookie，带了个<code>JSESSIONID=BE09C25AA4F9F1CBDC6B5641F59DBA36</code>, 同一对话<br>该session id值会一致，java web服务器根据id获取对应session,提供session作用域.<br>浏览器会自动管理session对应的cookie键值对，会话结束或者浏览器关闭时不进行存储，保证下次新会话不带上。</p>
+<h4 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h4><p>2种方式销毁<br>1:过期，可以配置过期时间<br>在<code>web.xml</code>中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>100<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span><span class="comment">&lt;!--单位为分钟--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>没有配置默认30分钟，在tomcat的web.xml中配置<br>2:主动销毁调用<code>Session.invalidate()</code>方法</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/29/JSP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1037,7 +1114,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
