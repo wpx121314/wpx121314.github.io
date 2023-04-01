@@ -144,6 +144,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/31/FilterAndListener/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/31/FilterAndListener/" class="post-title-link" itemprop="url">FilterAndListener</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-31 07:25:19" itemprop="dateCreated datePublished" datetime="2023-03-31T07:25:19-04:00">2023-03-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-04-01 13:39:03" itemprop="dateModified" datetime="2023-04-01T13:39:03-04:00">2023-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>执行过程类似Okhttp的责任链<code>Filter.doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain)</code>.<br>如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@WebFilter(&quot;/fi/d&quot;)</span><br><span class="line">class MyFilter : Filter &#123;</span><br><span class="line">    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) &#123;</span><br><span class="line">        println(&quot;-------&gt;before $&#123;this.javaClass.name&#125;&quot;)//3</span><br><span class="line">        chain.doFilter(request, response)//必须放行，否则会卡在此处</span><br><span class="line">        println(&quot;-------&gt;after $&#123;this.javaClass.name&#125;&quot;)//4</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@WebFilter(&quot;/*&quot;)</span><br><span class="line">class AllFilter : Filter &#123;</span><br><span class="line">    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) &#123;</span><br><span class="line">        println(&quot;-------&gt;before $&#123;this.javaClass.name&#125;&quot;) //1</span><br><span class="line">        request.getRequestDispatcher(&quot;/fi/d&quot;).forward(request, response) //a</span><br><span class="line">        //(response as HttpServletResponse).sendRedirect(&quot;$&#123;request.servletContext&#125;/fi/d&quot;) //b</span><br><span class="line"></span><br><span class="line">        println(&quot;-------&gt;after $&#123;this.javaClass.name&#125;&quot;) //2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">1:无a+无b 请求/fi/d 执行顺序为 1-&gt;3-&gt; servlet代码-&gt;4-&gt;2</span><br><span class="line">2:有a 请求任何路径含(/fi/d)  执行顺序为 1-&gt;servlet代码-&gt;2,即forword直接跳过后面所有Filter ，直接到servlet</span><br><span class="line">3:有b 请求任何路径含(/fi/d) 都会出错，也就是filter中不能redirect</span><br><span class="line">拦截器中不能进行sendRedirect操作</span><br><span class="line">4:范围都一致时，按拦截器类名字母排序</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="拦截器类型"><a href="#拦截器类型" class="headerlink" title="拦截器类型"></a>拦截器类型</h4><p>以下顺序越来越精确，拦截链则是越精确越后拦截,其它都相同情况下则拦截顺按拦截器类名字母排序<br>1:指定资源匹配。例如”&#x2F;index.jsp”<br>2:目录匹配。例如”&#x2F;servlet&#x2F;<em>“<br>3:后缀名匹配，例如”</em>.jsp”<br>4:通配符，拦截所有web资源。”&#x2F;*”</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/31/session/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -959,97 +1036,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PeytonWu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/18/hello-world/" class="post-title-link" itemprop="url">个人博客相关</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-18 20:09:26" itemprop="dateCreated datePublished" datetime="2023-02-18T20:09:26-05:00">2023-02-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-19 11:15:10" itemprop="dateModified" datetime="2023-02-19T11:15:10-05:00">2023-02-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Hexo-命令简介"><a href="#Hexo-命令简介" class="headerlink" title="Hexo 命令简介"></a>Hexo 命令简介</h2><h3 id="Cleans-the-cache-file"><a href="#Cleans-the-cache-file" class="headerlink" title="Cleans the cache file"></a>Cleans the cache file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean </span><br></pre></td></tr></table></figure>
-<p>删除缓存 （db.json和生成的public文件)<br>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/commands#clean">Clean</a></p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;xxx&quot;</span></span><br></pre></td></tr></table></figure>
-<p>然后就会在 {hexo目录}&#x2F;source&#x2F;_posts生成xxx.md文件  eg: <code>hexoBlog/source/_posts</code><br>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<p>生成对应静态文件<br>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<p>启动hexo服务器本地预览，打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可查看效果<br>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>发布到远端,以发布到github为例</p>
-<ol>
-<li>需提前在 {hexo目录}&#x2F;_config.yml文件的deploy节点下配置对应的数据，如 type,repo,banch等</li>
-<li>可配合hexo-deployer-git插件使用  <code>npm install hexo-deployer-git --save</code><br>当然也可不用该快捷命令直接将hexo g 生成的静态文件提交到git仓库也行.</li>
-</ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h2 id="图床"><a href="#图床" class="headerlink" title="图床"></a>图床</h2><p> <a target="_blank" rel="noopener" href="http://www.tietuku.cn/">贴图库</a><br> <a target="_blank" rel="noopener" href="https://www.qiniu.com/">七牛云</a><br> 新浪微博，也可另外建个github库专门放图</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1114,7 +1105,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
