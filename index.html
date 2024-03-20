@@ -933,7 +933,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-02 15:09:36" itemprop="dateModified" datetime="2024-03-02T15:09:36+08:00">2024-03-02</time>
+                <time title="修改时间：2024-03-20 18:41:51" itemprop="dateModified" datetime="2024-03-20T18:41:51+08:00">2024-03-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -963,7 +963,10 @@
 <p>char(0~255 bytes),当username 如果小于20字符，仍然占20个字符，当大于20个字符时，则报错。<br>因为常见固定长度，所以存储性能高，但浪费空间。</p>
 <p>varchar(0~65535 bytes),当username 如果小于20字符，只占实际字符.大于也同样报错。性能差点，但节约空间。</p>
 <p>删除表:<code>drop table if exists 表名;</code></p>
-<h4 id="操作表中数据"><a href="#操作表中数据" class="headerlink" title="操作表中数据"></a>操作表中数据</h4><p>改表名：<code>alter table  表名 rename to 新表名;</code><br>新增列:<code>alter table 表名 add 列名 数据类型;</code><br>修改数据类型:<code>alter table 表名 modify 列名 新数据类型;</code><br>修改列名和数据类型:<code>alter table 表名 change 列名 新列名 新数据类型;</code><br>删除列:<code>alter table 表名 drop 列名;</code></p>
+<h4 id="操作表中数据"><a href="#操作表中数据" class="headerlink" title="操作表中数据"></a>操作表中数据</h4><p>改表名：<code>alter table  表名 rename to 新表名;</code><br>新增列:<code>alter table 表名 add 列名 数据类型(字段名约束);</code><br>新增多列:<code>ALTER table 表名 add CLOUMN 数据类型(字段名约束) AFTER 想放的字段名后面如果需要;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tb_use</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `version` <span class="type">int</span> UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;乐观锁&#x27;</span>,</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `<span class="keyword">delete</span>` <span class="type">int</span>(<span class="number">2</span>) UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;软删除&#x27;</span> AFTER `version`;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改数据类型:<code>alter table 表名 modify 列名 新数据类型;</code><br>修改列名和数据类型:<code>alter table 表名 change 列名 新列名 新数据类型;</code><br>删除列:<code>alter table 表名 drop 列名;</code></p>
 <p>&#x2F;&#x2F; TODO Navicat or DBeaver</p>
 <h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>给指定列添加数据: <code>insert into 表名(列名1，列名2,...) values(值1，值2...);</code><br>给全部列添加数据: <code>insert into 表名 values(列名1,列名2,...);</code><br>批量添加数据:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名(列名<span class="number">1</span>，列名<span class="number">2</span>,...) <span class="keyword">values</span>(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..)...;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 <span class="keyword">values</span>(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..)...;</span><br></pre></td></tr></table></figure>
