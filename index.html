@@ -144,6 +144,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/11/AI_OVERVIEW/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/08/11/AI_OVERVIEW/" class="post-title-link" itemprop="url">AI OverView</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-11 10:20:10" itemprop="dateCreated datePublished" datetime="2023-08-11T10:20:10+08:00">2023-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-07-19 14:06:52" itemprop="dateModified" datetime="2024-07-19T14:06:52+08:00">2024-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="RAG-Retrieval-Augmented-Generation"><a href="#RAG-Retrieval-Augmented-Generation" class="headerlink" title="RAG(Retrieval-Augmented Generation)"></a>RAG(Retrieval-Augmented Generation)</h3><h4 id="流程"><a href="#流程" class="headerlink" title="流程:"></a>流程:</h4><p>Word Embeddings&#x2F;Sentence Embeddings</p>
+<ul>
+<li>信息检索（Retrieval): 8-10. 给定一个查询，系统首先从一个大型文档库中检索出与查询相关的文档或段落。<br>这一步通常使用嵌入技术和相似度计算来完成。</li>
+<li>生成（Generation): 13- 15. 生成模型（如GPT-3、T5等）接收检索到的信息作为额外的上下文，并根据这些信息生成更准确、相关的响应。</li>
+</ul>
+<p><img src="/images/1.jpg" alt="流程"></p>
+<h4 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题:"></a>解决的问题:</h4><p>1.LLM 数据更新问题</p>
+<p>2.数据安全问题</p>
+<p>3.幻觉</p>
+<h4 id="局限"><a href="#局限" class="headerlink" title="局限:"></a>局限:</h4><p>1:无法处理隐含关系(推理).A的所在部门销售</p>
+<p>2:全局推理缺陷</p>
+<p>GraphRAG(仍有缺陷)</p>
+<p><img src="/images/2.jpg" alt="应用"></p>
+<h4 id="VS-SFT"><a href="#VS-SFT" class="headerlink" title="VS SFT"></a>VS SFT</h4><p><img src="/images/3.jpg" alt="对比微调"><br><img src="/images/4.jpg" alt="4"></p>
+<h4 id="dify"><a href="#dify" class="headerlink" title="dify"></a><a target="_blank" rel="noopener" href="https://github.com/langgenius/dify">dify</a></h4><h4 id="Ollama"><a href="#Ollama" class="headerlink" title="Ollama:"></a><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama">Ollama</a>:</h4><p>Ollama是一个开源的大模型管理工具，它提供了丰富的功能，包括模型的训练、部署、监控等。 通过Ollama，你可以轻松地管理本地的大模型，提高模型的训练速度和部署效率。 </p>
+<ul>
+<li>此外，Ollama还支持多种机器学习框架，如TensorFlow、PyTorch等，使得你可以根据自己的需求选择合适的框架进行模型的训练.同时提供模型仓库</li>
+</ul>
+<h4 id="Hugging-Face"><a href="#Hugging-Face" class="headerlink" title="Hugging Face"></a>Hugging Face</h4><p><a target="_blank" rel="noopener" href="https://huggingface.co/blog/zh/noob_intro_transformers">https://huggingface.co/blog/zh/noob_intro_transformers</a><br>Hugging Face Hub 是一个协作平台，其中托管了大量的用于机器学习的开源模型和数据集，你可以将其视为 ML 的 Github。该 hub 让你可以轻松地找到、学习开源社区中有用的 ML 资产并与之交互，从而促进共享和协作</p>
+<h4 id="GGUF-GPT-Generated-Unified-Format-大模型文件标准格式之一"><a href="#GGUF-GPT-Generated-Unified-Format-大模型文件标准格式之一" class="headerlink" title="GGUF(GPT-Generated Unified Format) 大模型文件标准格式之一"></a>GGUF(GPT-Generated Unified Format) 大模型文件标准格式之一</h4><h4 id="LangChain"><a href="#LangChain" class="headerlink" title="LangChain"></a><a target="_blank" rel="noopener" href="https://github.com/langchain-ai/langchain">LangChain</a></h4><p>LangChain 的核心是一个开发环境，通过使用抽象方法简化 LLM 应用程序的编程：将一个或多个复杂流程表示为封装所有组成步骤的命名组件</p>
+<p>类比 LlamaIndex</p>
+<h4 id="Agent"><a href="#Agent" class="headerlink" title="Agent"></a>Agent</h4><h4 id="AnytingLLM"><a href="#AnytingLLM" class="headerlink" title="AnytingLLM"></a>AnytingLLM</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/07/RN%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -898,112 +992,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/25/SQL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PeytonWu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/25/SQL/" class="post-title-link" itemprop="url">SQL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-25 22:52:57" itemprop="dateCreated datePublished" datetime="2023-02-25T22:52:57+08:00">2023-02-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-03-20 19:23:24" itemprop="dateModified" datetime="2024-03-20T19:23:24+08:00">2024-03-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h2><h3 id="库级别"><a href="#库级别" class="headerlink" title="库级别"></a>库级别</h3><p>查看所有数据库: <code>show databases;</code><br>创建数据库: <code>create database if not exists 数据库名;</code><br>删除数据库: <code>drop database if exists 数据库名;</code><br>查看当前使用的数据库: <code>select database();</code><br>选择数据库:<code>use 数据库名;</code></p>
-<h3 id="表级别"><a href="#表级别" class="headerlink" title="表级别"></a>表级别</h3><p>查询当前数据库下(use 选定数据库)<br>查看所有表:<code>show tables;</code><br>查看某一特定表结构信息:<code>desc table1</code> table1 为表名,desc 即description含义。<br>创建表:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create table 表名(字段名1 数据类型1,字段名2 数据类型2); </span><br><span class="line"></span><br><span class="line">eg: create table tb_use(</span><br><span class="line"><span class="built_in">id</span> int,username varchar(20),password varchar(32)</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>char(0~255 bytes),当username 如果小于20字符，仍然占20个字符，当大于20个字符时，则报错。<br>因为常见固定长度，所以存储性能高，但浪费空间。</p>
-<p>varchar(0~65535 bytes),当username 如果小于20字符，只占实际字符.大于也同样报错。性能差点，但节约空间。</p>
-<p>删除表:<code>drop table if exists 表名;</code></p>
-<h4 id="操作表中数据"><a href="#操作表中数据" class="headerlink" title="操作表中数据"></a>操作表中数据</h4><p>改表名：<code>alter table  表名 rename to 新表名;</code><br>新增列:<code>alter table 表名 add 列名 数据类型(字段名约束);</code><br>新增多列:<code>ALTER table 表名 add CLOUMN 数据类型(字段名约束) AFTER 想放的字段名后面如果需要;</code></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- int(11)只影响int的显示位数(跟数据库客户端有关)，不影响它所占空间大小和所能存储的数值范围。且11代表的不是2进制下几位，而是10进制下几位</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tb_use</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `version` <span class="type">int</span> UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;乐观锁&#x27;</span>,</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `deleted` <span class="type">int</span> UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;软删除&#x27;</span> AFTER `version`;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>修改数据类型:<code>alter table 表名 modify 列名 新数据类型;</code><br>修改列名和数据类型:<code>alter table 表名 change 列名 新列名 新数据类型;</code><br>删除列:<code>alter table 表名 drop 列名;</code></p>
-<p>&#x2F;&#x2F; TODO Navicat or DBeaver</p>
-<h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>给指定列添加数据: <code>insert into 表名(列名1，列名2,...) values(值1，值2...);</code><br>给全部列添加数据: <code>insert into 表名 values(列名1,列名2,...);</code><br>批量添加数据:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名(列名<span class="number">1</span>，列名<span class="number">2</span>,...) <span class="keyword">values</span>(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..)...;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 表名 <span class="keyword">values</span>(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..),(值<span class="number">1</span>，值<span class="number">2.</span>..)...;</span><br></pre></td></tr></table></figure>
-<h3 id="删"><a href="#删" class="headerlink" title="删"></a>删</h3><p>删除: <code>delete from 表名 [where 条件];</code></p>
-<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><p>修改表数据: <code>update 表名 set 列名1=值1,列名2=值2,...[where 条件];</code></p>
-<h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><p>非空约束:<code>NOT NULL</code><br>唯一约束:<code>UNIQUE</code><br>主键约束(自带非空且唯一):<code>PRIMARY KEY</code><br>默认约束:<code>DEFAULT</code>(不能传值，才为默认值，即使传null也会为null)<br>外键约束:<code>FOREIGN KEY</code><br>检查约束:<code>CHECK</code>(Mysql不支持)<br>&#x2F;&#x2F;当列算是数字类型并且唯一约束 可以添加<code>auto_increment</code>，即使传null也会自动自增</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除主键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY;</span><br><span class="line"><span class="comment">-- 将某一列设为主键。也可同时用于增加或删除 auto_increment约束</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 MODIFY 列名 列数据类型 <span class="keyword">PRIMARY</span> KEY;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-- 创建表时添加外键约束</span><br><span class="line">create table 表名(列名 数据类型</span><br><span class="line">...</span><br><span class="line">CONSTRAINT 外键名称 FOREIGN KEY(外键列名) REFERENCES 主表(主表列名)</span><br><span class="line">);</span><br><span class="line"> </span><br><span class="line">-- 建表万能后添加外键约束</span><br><span class="line"></span><br><span class="line">ALTER TABLE 表名 ADD 外键名称 FOREIGN KEY(外键列名) REFERENCES 主表(主表列名);</span><br><span class="line"></span><br><span class="line">-- 删除外键</span><br><span class="line"> </span><br><span class="line">ALTER TABLE 表名 DROP  FOREIGN KEY 外键名称;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>外键永远放于多的那边关联另一方</p>
-<p>一对一:用于拆分表，经常用的放一张，不经常的放另外一张。其实就是简化版的一对多(多对一)，<br>只需要将外键列多加个<code>UNIQUE</code>约束<br>多对多:借助第3张中间表，中间2列(或多列)外键指向2张或多张主表主键，中间表还可以添加一些额外字段.</p>
-<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="内连-交集"><a href="#内连-交集" class="headerlink" title="内连(交集)"></a>内连(交集)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 隐式内连</span><br><span class="line">SELECT 字段列表 FROM 表1,表2[,表3] ... WHERE 条件 [and 另外条件];</span><br><span class="line">-- 显式内连</span><br><span class="line">SELECT 字段列表 FROM 表1 [INNER] JOIN 表2 ON 条件 [[INNER] JOIN 表3 ON 另外条件];</span><br></pre></td></tr></table></figure>
-<h3 id="外连"><a href="#外连" class="headerlink" title="外连"></a>外连</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- 左外连(交集+左表)</span><br><span class="line">SELECT 字段列表 FROM 表1 LEFT [OUTER] JOIN 表2 ON 条件;</span><br><span class="line"></span><br><span class="line">-- 右外连(交集+右表)</span><br><span class="line">SELECT 字段列表 FROM 表1 RIGHT [OUTER] JOIN 表2 ON 条件;</span><br><span class="line">一般情况下我们都用左连，因为左连=右连+表1 表2位置换下</span><br></pre></td></tr></table></figure>
-<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>单行单列:<br><code>SELECT 字段列表 FROM 表 WHERE 字段名 = (子查询)</code><br>多行查询:<br><code>SELECT 字段列表 FROM 表 WHERE 字段名 in (子查询)</code><br>多行多列:<br><code>SELECT 字段列表 FROM (子查询) WHERE 条件</code></p>
-<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-- 开启事务</span><br><span class="line">BEGIN;/START TRANSACTION;</span><br><span class="line">...SQL...</span><br><span class="line">-- 提交事务</span><br><span class="line">COMMIT;</span><br><span class="line">-- 回滚事务</span><br><span class="line">ROLLBACK;       </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="事务四大特定"><a href="#事务四大特定" class="headerlink" title="事务四大特定"></a>事务四大特定</h3><ul>
-<li>原子性(Atomicity):不可分析最小操作单位,要么同时成功，要么同时失败</li>
-<li>一致性(Consistency):事务完成时，必须时所有的数据保持一致状态</li>
-<li>隔离性(Isolation):多个事务之间，操作可见性</li>
-<li>持久性(Durability)：事务一旦成功或回滚，它对数据库中的数据的改变就是永久的</li>
-</ul>
-<p>查询事务的默认提交方式:<br><code>select @@autocommit; -- 1则是默认自动提交</code><br>修改默认提交方式:<br><code>set @@autocommit = 0;</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1073,7 +1061,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1084,7 +1072,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
