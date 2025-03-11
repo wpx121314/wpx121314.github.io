@@ -144,6 +144,156 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/03/Maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/03/Maven/" class="post-title-link" itemprop="url">Maven</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-03 10:57:21 / 修改时间：19:39:33" itemprop="dateCreated datePublished" datetime="2023-03-03T10:57:21+08:00">2023-03-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打包：</span></span><br><span class="line">mvn package</span><br><span class="line"><span class="comment"># 编译：</span></span><br><span class="line">mvn compile</span><br><span class="line"><span class="comment"># 清空：清除编译后目录，默认是target目录）</span></span><br><span class="line">mvn clean</span><br><span class="line"><span class="comment"># 运行测试：</span></span><br><span class="line">mvn <span class="built_in">test</span></span><br><span class="line"><span class="comment"># 安装jar包到本地仓库中：</span></span><br><span class="line">mvn install</span><br></pre></td></tr></table></figure>
+<h2 id="IDEA集成"><a href="#IDEA集成" class="headerlink" title="IDEA集成"></a>IDEA集成</h2><p><img src="https://thumbnail1.baidupcs.com/thumbnail/54671f230oda207b5e5c94d3533ba181?fid=1714346691-250528-907150314369162&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-LxMOU58BTEYS0/cC6Hl3REz2x6c=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="IDEA更改Maven默认Home及setting"><br><img src="https://thumbnail1.baidupcs.com/thumbnail/0ea85c91bie28da64c4cece4f100fa92?fid=1714346691-250528-256739189166398&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-okBFd6pkASikMWjt04TiKmUnTaU=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="创建Maven项目"><br><img src="https://thumbnail1.baidupcs.com/thumbnail/fc1b908e6rae72f5003ec22b2466618f?fid=1714346691-250528-1080596238903502&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-OdY/b6qx32B/kAuH8p0JkmxX38E=&expires=8h&chkbd=0&chkv=0&dp-logid=273579607296488411&dp-callid=0&time=1677816000&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="导入依赖"><br><img src="https://thumbnail1.baidupcs.com/thumbnail/89d74ad10s2918e338422a2b09ab1705?fid=1714346691-250528-445983644863441&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-J7n/CYcsOEDjcmZRhs958JKqghk=&expires=8h&chkbd=0&chkv=0&dp-logid=274629717510393283&dp-callid=0&time=1677819600&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="依赖范围"><br>POM 文件中 alt+insert快捷键,选择dependence选项，方便关键字快捷搜索所需库 </p>
+<h3 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h3><ul>
+<li>默认是compile类型,不写或特殊指定即是默认</li>
+<li>运行环境类型的依赖,基本都是provided ,仅用于编译通过及查看源码，不用打进包里，实际的类在环境中已经有。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/01/JDBC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/01/JDBC/" class="post-title-link" itemprop="url">JDBC</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-01 09:59:35" itemprop="dateCreated datePublished" datetime="2023-03-01T09:59:35+08:00">2023-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-02 18:30:45" itemprop="dateModified" datetime="2023-03-02T18:30:45+08:00">2023-03-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.注册驱动(Mysql5 之后可以不写,利用jar的META-INF/services/java.sql.Driver文件驱动类)</span></span><br><span class="line">Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>)<span class="comment">//该类static块调用 DriverManager.resisterDriver方法</span></span><br><span class="line"><span class="comment">/**2 获取连接 如果是本机且端口为3306则可url和port部分省略，为 jdbc:mysql:///$&#123;databsename&#125;?参数键值对(eg:useSSL=true).</span></span><br><span class="line"><span class="comment"> * 此时不能显式设置useSSL=false,否则会出异常，因为账号密码连接就是ssl连接，默认为true</span></span><br><span class="line"><span class="comment"> * useServerPrepStmts=true,则开启sql预编译功能</span></span><br><span class="line"><span class="comment"> * **/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> connect = DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://<span class="subst">$&#123;url:port&#125;</span>/<span class="subst">$&#123;databsename&#125;</span>[?参数键值对1&amp;参数键值对2..]&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;password&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Connection.setAutoCommit() 对应sql: set @<span class="doctag">@autocommit</span>;</span></span><br><span class="line"><span class="comment"> * Connection.commit()        对应sql: commit;</span></span><br><span class="line"><span class="comment"> * Connection.rollback()      对应sql: rollback;</span></span><br><span class="line"><span class="comment"> * createStatement() 普通执行sql对象</span></span><br><span class="line"><span class="comment"> * prepareStatement(sql) 预编译SQL的执行sql对象:防止SQL注入</span></span><br><span class="line"><span class="comment"> * prepareCall(sql) 执行存储过程的对象</span></span><br><span class="line"><span class="comment"> * **/</span></span><br><span class="line"><span class="comment">//3.创建执行sql对象并执行</span></span><br><span class="line"><span class="keyword">val</span> prepareStatement = connect.prepareStatement(<span class="string">&quot;sql 带问好号的语句&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> result = prepareStatement.apply&#123;</span><br><span class="line">    setXXX(<span class="number">1</span>,xxx)</span><br><span class="line">&#125;.executeQuery() <span class="comment">//executeUpdate() 更新操作可用于DDL或DML,DQL的结果是ResultSet需要close释放</span></span><br><span class="line"><span class="comment">//4.处理结果</span></span><br><span class="line"><span class="keyword">while</span> (result.next())&#123;</span><br><span class="line">    println(<span class="string">&quot;<span class="subst">$&#123;result.getString(<span class="number">1</span>)&#125;</span>&quot;</span>)<span class="comment">//getXXX 均支持列index 或 列名2种方式</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//5.释放资源</span></span><br><span class="line">result.close()</span><br><span class="line">prepareStatement.close()</span><br><span class="line">connect.close()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="连接远程报错问题"><a href="#连接远程报错问题" class="headerlink" title="连接远程报错问题"></a>连接远程报错问题</h4><p>如果连接远端 Mysql报 <code>- Host ‘xxx.xx.x.x‘ is not allowed to connect to this MySQL server</code>,这是数据库操作权限问题，可以通过</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="operator">-</span>u root <span class="operator">-</span>proot </span><br><span class="line">mysql<span class="operator">&gt;</span> use mysql; </span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> host <span class="operator">=</span> <span class="string">&#x27;%&#x27;</span> <span class="keyword">where</span> <span class="keyword">user</span> <span class="operator">=</span> <span class="string">&#x27;root&#x27;</span>; </span><br><span class="line">mysql<span class="operator">&gt;</span> flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/25/SQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -616,7 +766,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -654,7 +804,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-coins"></i>
   </span>
