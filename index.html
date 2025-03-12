@@ -731,7 +731,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-11 20:49:12" itemprop="dateModified" datetime="2025-03-11T20:49:12+08:00">2025-03-11</time>
+                <time title="修改时间：2025-03-12 14:57:30" itemprop="dateModified" datetime="2025-03-12T14:57:30+08:00">2025-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -754,7 +754,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>az aks list –output table<br>az aks get-credentials –resource-group <resource-group-name> –name <cluster-name> –file &#x2F;path&#x2F;to&#x2F;your&#x2F;kubeconfig<br>kubectl cluster-info<br>报错 <code> ... executable kubelogin not found</code></p>
+          <h1 id="查看所有可用的订阅"><a href="#查看所有可用的订阅" class="headerlink" title="查看所有可用的订阅"></a>查看所有可用的订阅</h1><p>az account list –output table</p>
+<h1 id="查看当前选择的订阅"><a href="#查看当前选择的订阅" class="headerlink" title="查看当前选择的订阅"></a>查看当前选择的订阅</h1><p>az account show –output table<br>az aks list –output table<br>az aks get-credentials –resource-group <resource-group-name> –name <cluster-name> –file &#x2F;path&#x2F;to&#x2F;your&#x2F;kubeconfig<br>kubectl cluster-info<br>报错 <code> ... executable kubelogin not found</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">你遇到的错误信息指出你需要安装kube login ，这是一个用于 Azure Kubernetes Service (AKS)与</span><br><span class="line">Azure Active Directory(AAD)集成的客户端凭证插件。当你的AKS集群启用了 AzUre AD 集成时，就需</span><br><span class="line">要使用kube login来获取井管理访问令牌，使kubectl能够与集群通信</span><br></pre></td></tr></table></figure>
 <h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><p>kubectl describe &#x2F; kubectl get &#x2F; kubectl explain + resource type</p>
 <p>docker exec -it &lt;container-id或container-name&gt; &#x2F;bin&#x2F;bash<br>对应docker file写法<br>kubectl exec po&#x2F;session-0 -n dev-shipping -it – &#x2F;bin&#x2F;bash<br>kubectl exec session-0 -n dev-shipping -it – &#x2F;bin&#x2F;bash<br>kubectl exec -it <pod-name> -n <namespace> – &#x2F;bin&#x2F;bash</p>
@@ -764,7 +765,7 @@
 <li>多个文件可以强制指定文件: kubectl get pods –kubeconfig ~&#x2F;.kube&#x2F;config</li>
 <li>利用环境变量合并，然后切换上下文<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export KUBECONFIG=~/.kube/config:~/.kube/uatconfig</span><br><span class="line">kubectl config get-contexts # 获取所有上下文</span><br><span class="line">kubectl config use-context xxx  #</span><br><span class="line">kubectl config current-context # 获取当前上下文</span><br></pre></td></tr></table></figure></li>
 </ul>
-
+<h3 id="CLi"><a href="#CLi" class="headerlink" title="CLi"></a>CLi</h3><h4 id="get"><a href="#get" class="headerlink" title="get"></a>get</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services -n uat-aggregator -o json | jq -c .</span><br><span class="line">kubectl get services --namespace=uat-aggregator -o json | jq -c .</span><br><span class="line"></span><br><span class="line">kubectl get --raw /api/v1/namespaces/uat-aggregator/services | jq -c .</span><br><span class="line"></span><br><span class="line">kubectl get namespace -n uat-aggregator -o json &gt; /Users/wupeixin/Desktop/k8s.json</span><br></pre></td></tr></table></figure>
       
     </div>
 
