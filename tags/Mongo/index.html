@@ -20,19 +20,14 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Cookie 我们设置的Cookie浏览器会分path，只有同一path返回的cookie，下一次访问同path时(请求转发也算)，浏览器请求头才会带上对应path.可以手动设置Cookie.path &#x3D; xxx eg:req.contextPath来指定path,浏览器默认根据要访问的url依次匹配最接近的1级,2级path的cookie并带上 Cookie的值只能是String无法想sessi">
-<meta property="og:type" content="article">
-<meta property="og:title" content="session and cookie">
-<meta property="og:url" content="http://example.com/2023/03/31/session/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="PeytonWu&#39;s Blog">
+<meta property="og:url" content="http://example.com/tags/Mongo/index.html">
 <meta property="og:site_name" content="PeytonWu&#39;s Blog">
-<meta property="og:description" content="Cookie 我们设置的Cookie浏览器会分path，只有同一path返回的cookie，下一次访问同path时(请求转发也算)，浏览器请求头才会带上对应path.可以手动设置Cookie.path &#x3D; xxx eg:req.contextPath来指定path,浏览器默认根据要访问的url依次匹配最接近的1级,2级path的cookie并带上 Cookie的值只能是String无法想sessi">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-31T07:36:26.162Z">
-<meta property="article:modified_time" content="2023-03-31T11:22:37.374Z">
-<meta property="article:tag" content="JavaEE">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/03/31/session/">
+<link rel="canonical" href="http://example.com/tags/Mongo/">
 
 
 <script id="page-configurations">
@@ -40,12 +35,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>session and cookie | PeytonWu's Blog</title>
+  <title>标签: Mongo | PeytonWu's Blog</title>
   
 
 
@@ -143,101 +138,51 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content tag">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/31/session/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PeytonWu's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          session and cookie
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-03-31 15:36:26 / 修改时间：19:22:37" itemprop="dateCreated datePublished" datetime="2023-03-31T15:36:26+08:00">2023-03-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">Mongo
+          <small>标签</small>
+        </h2>
+      </div>
 
       
-        <h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><ul>
-<li>我们设置的Cookie浏览器会分path，只有同一path返回的cookie，下一次访问同path时(请求转发也算)，浏览器请求头才会带上对应path.<br>可以手动设置<code>Cookie.path = xxx eg:req.contextPath</code>来指定path,浏览器默认根据要访问的url依次匹配最接近的1级,2级path的cookie并带上</li>
-<li>Cookie的值只能是String无法想session一样是object，且无法为中文,需要放中文时需要<code>URLEncode</code></li>
-<li>Cookie的有效期<code>Cookie.maxAge = 1000 // 秒为单位</code></li>
-<li>JSP中可以通过<code>$&#123;cookie.key.value&#125; key为cookie对应的key</code>获取Cookie</li>
-</ul>
-<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>Session作用域，浏览器重启或者新session后则刷新，原理是利用Cookie，带了个<code>JSESSIONID=BE09C25AA4F9F1CBDC6B5641F59DBA36</code>, 同一对话<br>该session id值会一致，java web服务器根据id获取对应session,提供session作用域.<br>浏览器会自动管理session对应的cookie键值对，会话结束或者浏览器关闭时不进行存储，保证下次新会话不带上。</p>
-<h4 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h4><p>2种方式销毁<br>1:过期，可以配置过期时间<br>在<code>web.xml</code>中配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>100<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span><span class="comment">&lt;!--单位为分钟--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>没有配置默认30分钟，在tomcat的web.xml中配置<br>2:主动销毁调用<code>Session.invalidate()</code>方法</p>
-
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/JavaEE/" rel="tag"># JavaEE</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2023-02-19T09:09:26+08:00"
+              content="2023-02-19">
+          02-19
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2023/02/19/mongo/" itemprop="url">
+            <span itemprop="name">个人博客相关</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/03/29/JSP/" rel="prev" title="JSP">
-      <i class="fa fa-chevron-left"></i> JSP
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/03/31/FilterAndListener/" rel="next" title="FilterAndListener">
-      FilterAndListener <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
@@ -290,7 +235,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session"><span class="nav-number">2.</span> <span class="nav-text">Session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%80%E6%AF%81"><span class="nav-number">2.1.</span> <span class="nav-text">销毁</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

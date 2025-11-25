@@ -144,6 +144,67 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/25/brew/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PeytonWu's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/11/25/brew/" class="post-title-link" itemprop="url">brew</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-11-25 16:19:51 / 修改时间：16:51:09" itemprop="dateCreated datePublished" datetime="2025-11-25T16:19:51+08:00">2025-11-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="查看提供可供选择版本信息"><a href="#查看提供可供选择版本信息" class="headerlink" title="查看提供可供选择版本信息"></a>查看提供可供选择版本信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew search &lt;包名&gt; 如 node</span><br><span class="line"><span class="comment"># 如果有多个版本号 则</span></span><br><span class="line"></span><br><span class="line">brew install &lt;包名&gt;@&lt;版本号&gt; 如 brew install node@22即可</span><br><span class="line"><span class="comment"># 如果只有1个版本号，只能建自定义新的tap(类似本地repo)，然后下载对应rb，再安装</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="下载旧版本软件包"><a href="#下载旧版本软件包" class="headerlink" title="下载旧版本软件包"></a>下载旧版本软件包</h2><h3 id="创建通用旧版本Tap"><a href="#创建通用旧版本Tap" class="headerlink" title="创建通用旧版本Tap"></a>创建通用旧版本Tap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 语法：brew log &lt;包名&gt; --oneline 查看git历史版本信息</span></span><br><span class="line">brew <span class="built_in">log</span> azure-cli --oneline</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建一个通用的本地 Tap</span></span><br><span class="line">brew tap-new my/versions</span><br></pre></td></tr></table></figure>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  2. 以后所有旧版本都往这里面提取</span></span><br><span class="line">brew extract --version=2.77.0 azure-cli my/versions</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 从我们的库中安装旧版本的rb</span></span><br><span class="line">brew install my/versions/azure-cli@2.77.0</span><br><span class="line"><span class="comment">#4. 链接安装 /usr/local/bin (Intel) 或 /opt/homebrew/bin (Apple Silicon) 下创建软链接。</span></span><br><span class="line">brew <span class="built_in">link</span> <span class="built_in">local</span>/versions/azure-cli@2.77.0</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/07/My-RN-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -880,124 +941,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/04/MyBatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PeytonWu's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/04/MyBatis/" class="post-title-link" itemprop="url">MyBatis</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-04 13:34:20" itemprop="dateCreated datePublished" datetime="2023-03-04T13:34:20+08:00">2023-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-30 17:06:35" itemprop="dateModified" datetime="2023-03-30T17:06:35+08:00">2023-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://thumbnail1.baidupcs.com/thumbnail/5cfb282f6u1d5e978b947ed9d3a959de?fid=1714346691-250528-298676613627565&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-1mjBgdHAc7UJMS+SCbKrTTIf/XI=&expires=8h&chkbd=0&chkv=0&dp-logid=318399100810491314&dp-callid=0&time=1677981600&size=c1920_u1200&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="Mybatis入门"><br>不使用代理时:<br>1.config.xml文件可随意放，可在resources文件下再创建文件。<code>SqlSessionFactoryBuilder</code>加载时路径传相对resources根目录。<br>2.config.xml文件中配置的mapper文件位置<code>&lt;mapper resource=&quot;xxx/xxx&quot;/&gt;</code>可以随意放，路径相对于resources根目录下，而不是相对config.xml文件位置<br>3.mapper.xml文件中的命名空间(namespace&#x3D;”user”)随便定义，如简单定义为数据库名即可<br>4.使用<code>sqlSession.selectxxx或updatexxx等(&quot;$&#123;3中mapper文件中定义namespace&#125;.$&#123;mapper文件中sql语句的id&#125;&quot;)</code>来查询</p>
-<p><img src="https://thumbnail1.baidupcs.com/thumbnail/76976d44bi8839f390260bc51e5aad79?fid=1714346691-250528-249956795368214&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-z6pEgQ1bHgRUmDFI/08mRNQVV5Q=&expires=8h&chkbd=0&chkv=0&dp-logid=344491732181185356&dp-callid=0&time=1678078800&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="使用Mapper代理"></p>
-<p>MyBatis 配置中标签存在一定顺序,可以利用别名标签给pojo类统一省略包名，别名大小写忽略如</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAlias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;xxxx.pojo路径&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://thumbnail1.baidupcs.com/thumbnail/d62779260k49eb4ba106cd6636266f7a?fid=1714346691-250528-567294492767215&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-CAPeI6KB8VCiODhdsEYEIhBsiGM=&expires=8h&chkbd=0&chkv=0&dp-logid=344491732181185356&dp-callid=0&time=1678078800&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="MyBatis标签顺序"></p>
-<h3 id="mapper标签细节"><a href="#mapper标签细节" class="headerlink" title="mapper标签细节"></a>mapper标签细节</h3><h4 id="占位符，特殊字符及parameterType省略"><a href="#占位符，特殊字符及parameterType省略" class="headerlink" title="占位符，特殊字符及parameterType省略"></a>占位符，特殊字符及parameterType省略</h4><p>特殊字符如 <code>&lt;</code>在xml文件 mapper标签中会被认为是标签的开始，所以在mapper标签sql中需转义(html encode)或cddata注释(<br>特殊字符较多时用cddata较少时用转义)如:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 ... where xxx &amp;lt; 10</span><br><span class="line">2 ... where xxx &lt;![CDATA[&lt;]]&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://thumbnail1.baidupcs.com/thumbnail/a9a78cd82q34a1fd6018e684bead7dc6?fid=1714346691-250528-429701109483728&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-4bQh7vnXVfJZrzjlhyn764HV5Mk=&expires=8h&chkbd=0&chkv=0&dp-logid=344491732181185356&dp-callid=0&time=1678078800&size=c1920_u1080&quality=90&vuk=1714346691&ft=image&autopolicy=1" alt="mapper标签细节"></p>
-<h4 id="多条件查询参数格式"><a href="#多条件查询参数格式" class="headerlink" title="多条件查询参数格式"></a>多条件查询参数格式</h4><ol>
-<li>不封装每个参数前加@Param注解</li>
-<li>封装成对象</li>
-<li>分装成Map</li>
-</ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不封装直接传</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">selectMultiParams</span><span class="params">(<span class="meta">@Param(<span class="string">&quot;userName&quot;</span>)</span> name: <span class="type">String</span>, <span class="meta">@Param(<span class="string">&quot;password&quot;</span>)</span> password: <span class="type">String</span>)</span></span>: List&lt;User&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//多参数传参， 封装成User对象</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">selectMultiParams</span><span class="params">(user: <span class="type">User</span>)</span></span>: List&lt;User&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//多参数传参， 使用Map</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">selectMultiParams</span><span class="params">(map: <span class="type">Map</span>&lt;<span class="type">String</span>, *&gt;)</span></span>: List&lt;User&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//mapper.xml</span></span><br><span class="line">SELECT * FROM tb_use WHERE username like #&#123; userName &#125; and password like #&#123; password &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="多条件查询优化"><a href="#多条件查询优化" class="headerlink" title="多条件查询优化"></a>多条件查询优化</h5><p>1.以上多条件查询时，可能存在后面参数<code>password</code><br>不传参问题,那整个SQL就会变为<code>SELECT * FROM tb_use WHERE username like #&#123;userName&#125; and password like </code>，查询就会出错，<br>可以用<if>标签优化为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM tb_use WHERE</span><br><span class="line">&lt;if test=&quot;userName!=null and userName!=&#x27;&#x27; &quot;&gt;</span><br><span class="line">    username like #&#123;userName&#125;</span><br><span class="line">&lt;/if&gt;</span><br><span class="line">&lt;if test=&quot;password!=null and password!=&#x27;&#x27;&quot;&gt;</span><br><span class="line">and password like #&#123;password&#125;</span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2.此时如果出现第一个参数<code>username</code>不传仍然有问题，此时可以将所有条件都加上<code>and</code>开头然后<br>2.1 以一个恒等式 eg: <code>where 1=1 &lt;if test=&quot;userName!=null and userName!=&#39;&#39; &quot;&gt; and username like #&#123;userName&#125;&lt;/if&gt;</code> 来避免<br>2.2 使用Mybatis的<code>&lt;where&gt;</code>标签实现2.1功能<br>即 <code>&lt;where&gt; 1=1 &lt;if test=&quot;userName!=null and userName!=&#39;&#39; &quot;&gt; and username like #&#123;userName&#125;&lt;/if&gt; &lt;if&gt;...&lt;/if&gt;&lt;/where&gt;</code></p>
-<h4 id="动态单条件查询"><a href="#动态单条件查询" class="headerlink" title="动态单条件查询"></a>动态单条件查询</h4><p><code>choose (when,otherwise)</code>选择类似switch</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectChooseParams&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">    SELECT *</span><br><span class="line">    FROM tb_use</span><br><span class="line">    where</span><br><span class="line">    <span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;userName!=null and userName!=&#x27;&#x27; &quot;</span>&gt;</span></span><br><span class="line">            username like #&#123;userName&#125; <span class="comment">&lt;!--可以加and，&lt;where&gt;标签会动态去除--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;password!=null and password!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            password like #&#123;password&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>同理以上语句当所有条件都不成立时会变成<code>SELECT * FROM tb_use where</code>,会出问题，解决方案</p>
-<ol>
-<li>利用<otherwise>添加恒等式，让sql完成eg: <code>&lt;when text=&quot;..&quot;&gt;...&lt;/when&gt; &lt;otherwise&gt;1=1&lt;/otherwise&gt; </code></li>
-<li>利用<where>标签</li>
-</ol>
-<h4 id="标签小结"><a href="#标签小结" class="headerlink" title="标签小结"></a><where>标签小结</h4><p>1.动态删除sql中<code>and</code>。当sql中第一个标签语句含and时，会动态删除。但做不到动态添加<code>and</code>，如第2个标签缺<code>and</code>，不会自动添加<br>2.动态删除<code>where</code>，当标签内所有条件都不成立时，不会给语句添加where,使sql出问题.</p>
-<h3 id="insert值"><a href="#insert值" class="headerlink" title="insert值"></a>insert值</h3><ul>
-<li>默认情况下Mybatis开始事务,故增删改时<br>1.要么在创建session时<code>factory.openSession(true)</code>设置默认自动提交<br>or<br>2.在每次操作后session.commit</li>
-<li>可在插入后返回指定列数据<br><code>&lt;insert id=&quot;add&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;自动生成主键名&quot;&gt;</code></li>
-</ul>
-<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>可以通过<set>标签避免，sql语法后的<code>,</code>问题eg:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;update&quot;</span>&gt;</span></span><br><span class="line">    UPDATE tb_use</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;userName!=null and userName!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            username = #&#123;userName&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;password!=null and password!=&#x27;&#x27;&quot;</span>&gt;</span></span><br><span class="line">            password = #&#123;password&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;age&gt;0&quot;</span>&gt;</span></span><br><span class="line">            age = #&#123;age&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    WHERE id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">deleteSome</span><span class="params">(<span class="meta">@Param(<span class="string">&quot;ids&quot;</span>)</span> ids:<span class="type">List</span>&lt;<span class="type">Int</span>&gt;)</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteSome&quot;</span>&gt;</span></span><br><span class="line">    DELETE FROM tb_use WHERE id in</span><br><span class="line">    <span class="comment">&lt;!-- ids需要在接口中通过@Param(&quot;ids&quot;)手动指定，</span></span><br><span class="line"><span class="comment">    否者collection参数类型，mybatis有自己定义key的规则，如list的key就是list,数组的key是array，而不是参数名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">        #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="注解生成sql"><a href="#注解生成sql" class="headerlink" title="注解生成sql"></a>注解生成sql</h3><p>eg:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Delete(<span class="string">&quot;delete from tb_use where id=#&#123;id&#125;&quot;</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">delete</span><span class="params">(id: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span></span><br><span class="line"><span class="comment">//这样就不用在对应的mapper文件中增加标签</span></span><br></pre></td></tr></table></figure>
-<h3 id="ResultMap"><a href="#ResultMap" class="headerlink" title="ResultMap"></a>ResultMap</h3><p>用于映射实体类字段名与列名关系，如果2者一样则可不映射，如果不一样默认以实体类定义字段顺序映射，可通过ResultMap设定映射关系</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span>&gt;</span></span><br><span class="line">  mapper xml文件中定义resultMap</span><br><span class="line">  ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;userResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;second_name&quot;</span> <span class="attr">property</span>=<span class="string">&quot;sN&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;age_str&quot;</span> <span class="attr">property</span>=<span class="string">&quot;agString&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>1: 如果SQL是写在接口的注解中,则同时使用<code>@ResultMap(&quot;$&#123;userResultMap //mapper文件定义的resultMap id&#125;&quot;)</code><br>2: 如果SQL是通过mapper xml标签写的，则在对应标签中eg:<code> &lt;select id=&quot;selectAll&quot; resultType=&quot;user&quot; resultMap=&quot;userResultMap&quot;&gt;</code></p>
-<h3 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1067,7 +1010,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1078,7 +1021,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
